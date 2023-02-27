@@ -17,13 +17,14 @@ import requests
 from rally.common import cfg
 from rally.common import utils as commonutils
 from rally import exceptions
+from rally.common import logging
 from rally.task import atomic
 from rally.task import scenario
 
 from xrally_kubernetes.tasks import scenario as common_scenario
 
 CONF = cfg.CONF
-
+LOG = logging.getLogger(__name__)
 
 @scenario.configure(
     "Kubernetes.create_check_and_delete_pod_with_cluster_ip_service",
@@ -163,7 +164,8 @@ class PodWithNodePortService(common_scenario.BaseKubernetesScenario):
 
         with atomic.ActionTimer(self, "kubernetes.request_node_port_service"):
             server = self.context["env"]["platforms"]["kubernetes"]["server"]
-
+            LOG.debug("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++")
+            LOG.debug(self.context)
             sleep_time = CONF.kubernetes.status_poll_interval
             retries_total = CONF.kubernetes.status_total_retries
 
