@@ -164,8 +164,8 @@ class PodWithNodePortService(common_scenario.BaseKubernetesScenario):
 
         with atomic.ActionTimer(self, "kubernetes.request_node_port_service"):
             server = self.context["env"]["platforms"]["kubernetes"]["server"]
-            print("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++")
-            print(self.context)
+            LOG.debug("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++")
+            LOG.debug(self.context)
             sleep_time = CONF.kubernetes.status_poll_interval
             retries_total = CONF.kubernetes.status_total_retries
 
